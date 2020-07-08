@@ -1,0 +1,6 @@
+﻿  Source.cpp
+D:\Study IT STEP academy\HomeWork\dice\dice\Source.cpp(254,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study IT STEP academy\HomeWork\dice\dice\Source.cpp(317,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study IT STEP academy\HomeWork\dice\dice\Source.cpp(358,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Study IT STEP academy\HomeWork\dice\dice\Source.cpp(379,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  dice.vcxproj -> D:\Study IT STEP academy\HomeWork\dice\Debug\dice.exe
