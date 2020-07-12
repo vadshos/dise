@@ -26,6 +26,7 @@ Type checking(Type arr[],Type size) {
 }
 template <typename Type>
 Type random(Type arr[], Type size) {
+srand(time(NULL));
 	for (int i = 0; i < size; i++) {
 		arr[i] = 100 - rand()%- 120;
 
