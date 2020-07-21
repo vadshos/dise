@@ -56,12 +56,15 @@ float simpleOutput() {
 		if (priority[j] == "c") {
 			SetColor(4, 0);
 			cout << events[j] << " (" << date[j] << ") " << "importent" << endl;
+			SetColor(15, 0);
 		}else if (priority[j] == "b") {
 			SetColor(14, 0);
 			cout << events[j] << " (" << date[j] << ") " << "midle importent" << endl;
+			SetColor(15, 0);
 		}else if (priority[j] == "a") {
 			SetColor(2, 0);
 			cout << events[j] << " (" << date[j] << ") " << "not a importent" << endl;
+			SetColor(15, 0);
 		}
 		
 		
@@ -216,6 +219,7 @@ float output() {
 			}
 			SetColor(4, 0);
 			cout << events[j] << " (" << date[j][j] << date[j][j + 1] << date[j][j + 2] << ") " << "importent" << endl;
+			SetColor(15, 0);
 		}
 	}
 	for (int j = 0; j < i; j++) {
@@ -225,6 +229,7 @@ float output() {
 			}
 			SetColor(14, 0);
 			cout << events[j] << " (" << date[j][j] << date[j][j + 1] << date[j][j + 2] << ") " << "midle importent" << endl;
+			SetColor(15, 0);
 		}
 	}
 	for (int j = 0; j < i; j++) {
@@ -234,6 +239,7 @@ float output() {
 			}
 			SetColor(2, 0);
 			cout << events[j] << " (" << date[j][j] << date[j][j + 1] << date[j][j + 2] << ") " << "not a importent" << endl;
+			SetColor(15, 0);
 		}
 
 	}
