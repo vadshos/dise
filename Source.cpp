@@ -1,154 +1,177 @@
 #include<iostream>
-#include<string>
+#include<math.h>
 #include"windows.h"
-
 using namespace std;
-int win = 0, newVictorins = 0, choiseVictorins = 0, choiseVariants = 0, victorines = 0, questiones = 0, variants = 0;
-string* victorine = new string[victorines];
-string* questions = new string[questiones];
-string* variantes = new string[variants];
-int* trueVariantes = new int[questiones];
-int* indexForOutput = new int[victorines];
-int* indexForOutput2 = new int[victorines];
-int* startQuestion = new int[victorines];
-int* startVariantes = new int[victorines];
+
+int countFraction = 0;
+struct Fraction
+{
+	int date;
+	int denominator;
+	int date2;
+	int denominator2;
+	int resultDate;
+	int resultDenominatoe;
+};
 
 
 
-void SetColor(int text, int bg) {
-	HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hStdOut, (WORD)((bg << 4) | text));
-}
-void output() {
-	SetColor(15, 0);
-
-	for (int i = startQuestion[choiseVictorins - 1]; i < indexForOutput2[choiseVictorins - 1]; i++) {
-		questions[i];
-		for (int j = startVariantes[choiseVictorins - 1]; j < indexForOutput[choiseVictorins]; j++) {
-			variantes[j];
-		}
-		cout << "Enter number variants-> ";
-		cin >> choiseVariants;
-		system("cls");
-		SetColor(15, 0);
-		
-
-	}
-	cout << "Correct answers:" << win << " out of " << indexForOutput2[choiseVictorins] << endl;
-}
-void addNewVictirines() {
-	int question = 0;
-	int variantes2 = 0;
-	int writeStartNumber = variants;
-	cout << "How many question you want -> ";
-	cin >> question;
-	cout << "How many variants you want -> ";
-	cin >> variantes2;
-
-
-	system("cls");
-
-
-	string* tempVictorines = new string[victorines + 1];
-	string* tempQuestion = new string[questiones + question];
-	string* tempVariantes = new string[(questiones * variants) + (question * variantes2)];
-	int* tempTrueVariantes = new int[questiones + question];
-	for (int i = 0; i < victorines; i++) {
-		tempVictorines[i] = victorine[i];
-	}
-	for (int i = 0; i < questiones; i++) {
-		tempQuestion[i] = questions[i];
-	}
-	for (int i = 0; i < variants; i++) {
-		tempVariantes[i] = variantes[i];
-	}
-	victorines++;
-	indexForOutput = new int[victorines];
-	indexForOutput2 = new int[victorines];
-	startQuestion = new int[victorines];
-	startVariantes = new int[victorines];
-
-	for (int i = 0; i < victorines; i++) {
-		cout << "Enter name your victorines" << endl;
-		cin.ignore();
-		getline(cin, tempVictorines[victorines - 1]);
-		for (int j = questiones; j < (question + questiones); j++)
-		{
-			cout << "enter question" << endl;
-			cin.ignore();
-			getline(cin, tempQuestion[j]);
-			bool trueVariants = false;
-			for (int g = variants; g < (variants + variantes2); g++)
-			{
-				cout << "enter variants  " << endl;
-				cin.ignore();
-				getline(cin, tempVariantes[g]);
-				if (trueVariants == false) {
-					cout << "this variants is true -> ";
-					string ach;
-					cin >> ach;
-					if (ach == "yes") {
-						tempTrueVariantes[j] = g;
-						trueVariants = true;
-					}
-
-				}
-
-			}
-
-		}
-	}
-	startQuestion[victorines - 1] = questiones;
-	startVariantes[victorines - 1] = variants;
-	questiones += question;
-	variants += variantes2;
-	indexForOutput[victorines - 1] = variants;
-	indexForOutput2[victorines - 1] = questiones;
-
-	victorine = new string[victorines];
-	questions = new string[questiones];
-	variantes = new string[variants];
-	trueVariantes = new int[questiones];
-	for (int i = 0; i < victorines; i++) {
-		victorine[i] = tempVictorines[i];
-	}
-	for (int i = 0; i < questiones; i++) {
-		questions[i] = tempQuestion[i];
-		trueVariantes[i] = tempTrueVariantes[i];
-	}
-	for (int i = 0; i < variants; i++) {
-		variantes[i] = tempVariantes[i];
-	}
-
-
-	delete[] tempVictorines;
-	delete[] tempQuestion;
-	delete[] tempVariantes;
-	delete[] tempTrueVariantes;
-
-}
 int main() {
-	int acshion = 0;
-	do {
-		cout << "Add new victorines" << endl;
-		cout << "Print all victorines" << endl;
-		cout << "Exit" << endl;
-		cin >> acshion;
-		system("cls");
-		if (acshion == 1) {
-			addNewVictirines();
-		}
-		else if (acshion == 2) {
-			for (int i = 0; i < victorines + 1; i++) {
-				cout << victorine[i] << endl;
-				cout << questions[0];
-				cout << "Choise victorines enter number ->";
-				cin >> choiseVictorins;
-
-				system("cls");
-				output();
+	setlocale(LC_ALL, "");
+	int achion = 0;
+	do
+	{
+		cout << "Відняти дроби" << endl;
+		cout << "Додати дроби" << endl;
+		cout << "Помножити дроби" << endl;
+		cout << "Поділити дроби" << endl;
+		cout << "Вийти" << endl;
+		cin >> achion;
+		switch (achion)
+		{
+		case 2: {
+			Fraction newFraction;
+			cout << "Введіть 1 чисельник -> ";
+			cin >> newFraction.date;
+			system("cls");
+			cout << "Введіть 1 знаменник -> ";
+			cin >> newFraction.denominator;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.date2;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.denominator2;
+			system("cls");
+			newFraction.resultDate = (newFraction.date * newFraction.denominator2) + (newFraction.date2 * newFraction.denominator);
+			newFraction.resultDenominatoe = newFraction.denominator2 * newFraction.denominator;
+			if (newFraction.resultDate > newFraction.resultDenominatoe)
+			{
+					int temp = ceil(newFraction.resultDate / newFraction.resultDenominatoe);
+						cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << (newFraction.resultDate/5) << endl;
+					cout << "---" << '\t' << "+" << '\t' << "---" << "\t=\t" << temp << "---" << endl;
+					cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << newFraction.resultDenominatoe << endl;
+				
+			}else if (newFraction.resultDate == newFraction.resultDenominatoe) {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << endl;
+				cout << "---" << '\t' << "+" << '\t' << "---" << "\t=\t" << (newFraction.resultDate / newFraction.resultDenominatoe) << endl;
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << endl;
 			}
+			else {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t=\t" << " " << newFraction.resultDate << endl;
+				cout << "---" << '\t' << "+" << '\t' << "---" << "\t\t" << "---" << endl;
+
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t=\t" << " " << newFraction.resultDenominatoe << endl;
+			}
+		}break;
+		case 1: {
+
+			Fraction newFraction;
+			cout << "Введіть 1 чисельник -> ";
+			cin >> newFraction.date;
+			system("cls");
+			cout << "Введіть 1 знаменник -> ";
+			cin >> newFraction.denominator;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.date2;
+			system("cls");
+			cout << "Введіть 2 знаменник -> ";
+			cin >> newFraction.denominator2;
+			system("cls");
+			newFraction.resultDate = (newFraction.date * newFraction.denominator2) - (newFraction.date2 * newFraction.denominator);
+			if (newFraction.resultDate < 0) {
+				newFraction.resultDate = (newFraction.date2 * newFraction.denominator) - (newFraction.date * newFraction.denominator2);
+			}
+			newFraction.resultDenominatoe = newFraction.denominator2 * newFraction.denominator;
+			if (newFraction.resultDate == 0) {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << endl;
+				cout << "---" << '\t' << "-" << '\t' << "---" << "\t = \t" << 0 << endl;
+
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << endl;
+
+			}
+			else {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << newFraction.resultDate << endl;
+				cout << "---" << '\t' << "-" << '\t' << "---" << "\t=\t" << "---" << endl;
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << newFraction.resultDenominatoe << endl;
+			}
+		}break;
+		case 3: {
+			Fraction newFraction;
+			cout << "Введіть 1 чисельник -> ";
+			cin >> newFraction.date;
+			system("cls");
+			cout << "Введіть 1 знаменник -> ";
+			cin >> newFraction.denominator;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.date2;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.denominator2;
+			system("cls");
+			newFraction.resultDate = (newFraction.date * newFraction.date2);
+			newFraction.resultDenominatoe = newFraction.denominator2 * newFraction.denominator;
+			if (newFraction.resultDate > newFraction.resultDenominatoe)
+			{
+				int temp = ceil(newFraction.resultDate / newFraction.resultDenominatoe);
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << (newFraction.resultDate / 5) << endl;
+				cout << "---" << '\t' << "*" << '\t' << "---" << "\t=\t" << temp << "---" << endl;
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << newFraction.resultDenominatoe << endl;
+
+			}
+			else if (newFraction.resultDate == newFraction.resultDenominatoe) {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << endl;
+				cout << "---" << '\t' << "*" << '\t' << "---" << "\t=\t" << (newFraction.resultDate / newFraction.resultDenominatoe) << endl;
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << endl;
+			}
+			else {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t=\t" << " " << newFraction.resultDate << endl;
+				cout << "---" << '\t' << "*" << '\t' << "---" << "\t\t" << "---" << endl;
+
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t=\t" << " " << newFraction.resultDenominatoe << endl;
+			}
+		}break;
+		case 4: {
+			Fraction newFraction;
+			cout << "Введіть 1 чисельник -> ";
+			cin >> newFraction.date;
+			system("cls");
+			cout << "Введіть 1 знаменник -> ";
+			cin >> newFraction.denominator;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.date2;
+			system("cls");
+			cout << "Введіть 2 чисельник -> ";
+			cin >> newFraction.denominator2;
+			system("cls");
+			newFraction.resultDate = (newFraction.date * newFraction.denominator2);
+			newFraction.resultDenominatoe = newFraction.date2 * newFraction.denominator;
+			if (newFraction.resultDate > newFraction.resultDenominatoe)
+			{
+				int temp = ceil(newFraction.resultDate / newFraction.resultDenominatoe);
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << (newFraction.resultDate / 5) << endl;
+				cout << "---" << '\t' << "/" << '\t' << "---" << "\t=\t" << temp << "---" << endl;
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << newFraction.resultDenominatoe << endl;
+
+			}
+			else if (newFraction.resultDate == newFraction.resultDenominatoe) {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t\t" << " " << endl;
+				cout << "---" << '\t' << "/" << '\t' << "---" << "\t=\t" << (newFraction.resultDate / newFraction.resultDenominatoe) << endl;
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t\t" << " " << endl;
+			}
+			else {
+				cout << " " << newFraction.date << '\t' << " " << '\t' << " " << newFraction.date2 << "\t=\t" << " " << newFraction.resultDate << endl;
+				cout << "---" << '\t' << "/" << '\t' << "---" << "\t\t" << "---" << endl;
+
+				cout << " " << newFraction.denominator << '\t' << " " << '\t' << " " << newFraction.denominator2 << "\t=\t" << " " << newFraction.resultDenominatoe << endl;
+			}
+		}break;
+		default:
+			break;
 		}
 
-	} while (acshion != 3);
+	} while (achion != 5);
 }
