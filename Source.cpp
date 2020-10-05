@@ -1,137 +1,73 @@
 #include<iostream>
 #include<time.h>
+#include<iomanip>
+#include<string>
+
 using namespace std;
 
-void random(int* arr,int size) {
-	srand(time(NULL));
-	for (int i = 0; i < size; i++)
-	{
-		arr[i] = rand() % 100;
-		
-	}
-}
 
-void output(int* arr1, int size1) {
-	for (int i = 0; i < size1; i++)
-	{
-		cout << arr1[i] << " ";
-	}
-}
 
-void deleteElement(int*& arr2, int& size2,int index1) {
-	int* temp = new int[size2];
-	for (int i = 0; i < size2;i++ )
-	{
-		if (i != index1) {
-			temp[i] = arr2[i];
-			
-		}
-		
-	}
-	delete[] arr2;
-	size2;
-	arr2 = new int[size2-1];
-	int j = 0;
-	for (int i = 0; i < size2; i++)
-	{
-		
-		
-		if (i != index1) {
 
-			arr2[j] = temp[i];
-			j++;
-		}
-		
-		
-		
-	}
-	size2--;
-	
-	
-}
-void addElement(int*& arr2, int& size2,int index,int number) {
-	int* temp = new int[size2+1];
-	size2++;
-	int j = 0;
-	for (int i = 0; i < size2 ; i++)
-	{
-
-		if (i != index) {
-			
-			temp[i] = arr2[j];
-			j++;
-		}
-		else {
-			temp[i] = number;
-		}
-	}
-	delete[] arr2;
-	arr2 = new int[size2];
-	
-	for (int i = 0; i < size2; i++)
-	{
-	
-			
-			arr2[i] = temp[i];
-		
-		
-	}
-	delete[] temp;
-	temp = nullptr;
-}
 
 int main() {
-	srand(time(NULL));
-	int count = 0;
-	int achion = 0;
-	cout << "Enter size arr -> ";
-	cin >> count;
-	int* ptr = new int[count];
-	random(ptr, count);
-	do
-	{
-		cout << "1.output Array" << endl;
-		cout << "2.Add elements in array" << endl;
-		cout << "3.Delete elements in array" << endl;
-		cout << "4.Exit" << endl;
-		cout << endl;
-		cout << "Enter number achion -> ";
-		cin >> achion;
-		
-		int index = 0;
-		switch (achion)
-			
-		{
-		case 1: {
-			
-			output(ptr, count);
-			cout << endl;
-		}break;
-		case 2: {
-			int number = 0;
-			cout << "Enter new elements for arr-> ";
-			cin >> number;
-			cout << "Enter index for this elements-> ";
-			cin >> index;
-			output(ptr, count);
-			addElement(ptr, count, index, number);
-			
-		}break;
-		case 3: {
-			output(ptr, count);
-			cout << "Enter index for this elements-> ";
-			cin >> index;
-			deleteElement(ptr, count, index );
-			output(ptr, count);
-		}break;
-		default:
-			cout << "Invalid number of achion";
-			break;
-		}
 
-	} while (achion !=4);
+	/*int point1 = 0;
+	int big = 0;
+	int litle = 0;
+	int space = 0;
+	int point = 0;
+	*/
+	char arr[255];
+	char arr2[255];
+	char arr3[255];
 	
+	cin.getline(arr, 255);
+	//for (int i = 0; i < strlen(arr); i++) {
+	//	if ( isupper(arr[i])){
+	//		big++;
+	//	}
+	//	else if ( islower(arr[i])) {
+	//		litle++;
+	//	}
+	//	else if (isspace(arr[i])) {
+	//		space++;
+	//	}
+	//	else if (int(arr[i]) < 90 && int(arr[i]) > 32) {
+	//		point++;
+	//	}
 
+	//	if (int(arr[i]) == 46) {
+	//		point1 = i;
+	//	}
+
+	//}
+	//cout<<"Big sign-> "  << big << endl;
+	//cout << "Litle sign-> " << litle << endl;
+	//cout << "Space-> " << space << endl;
+	//cout << "Char-> " << point << endl;
+	//cout << "Last point-> " << point1 << endl;
+	//
+	int index = 0;
+	int stop = 0;
+	for (int i = 0; i < 255; i++) {
+		if (int(arr[i]) == 43) {
+			index = i;
+		}
+		if (int(arr[i]) == ' ') {
+			stop = i;
+		}
+		
+	}
+	for (int i = index+1,j=0; i < 255;i++,j++) {
+		arr3[j] = arr[i] ;
+	}
+	
+	 strncpy_s(arr2,arr,index);
+	 cout << arr2 << endl;
+	 cout << arr3 << endl;
+	 int number3 = atoi(arr3);
+	 int number2 = atoi(arr2);
+	 cout<<number3<<" + "<<number2<<" = " << number2 + number3 << endl;
 
 	return 0;
 }
