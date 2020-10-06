@@ -1,52 +1,50 @@
 #include<iostream>
-#include <windows.h>
-int arr[20];
-
+#include<string>
 using namespace std;
 
 
-// exersise 2
-
-float easy(float sizeX, float sizeY) {
-	system("color 7");
-
-	for (int j = 0; j < sizeY; j++) {
-		for (int i = 0; i < sizeX; i++) {
-			cout << char(254);
-		}
-		cout << endl;
-	}
-	return 0;
-}
-//int main() {
-//	int a = 0;
-//	int b = 0;
-//
-//	cin >> a;
-//	cin >> b;
-// system("cls");
-//	easy(a, b);
-//}
-//
-float change() {
-	for (int i = 0; i < 20; i++) {
-		arr[i] = rand() % 100;
-		cout << " " << arr[i];
-	}
-	cout << endl;
-	int number;
-	int elements;
-	cin >> number;
-	cin >> elements;
-	arr[number] = elements;
-	for (int i = 0; i < 20; i++) {
-		
-		cout<<" " << arr[i];
-	}
-	return 0;
-
-
-}
 int main() {
-	change();
+	//exersise №1
+	/*string str;
+	char arr[255];
+	getline(cin, str);
+	int index = 0;
+		strcpy_s(arr, str.c_str());
+		for (int i = 0; i < 255; i++) {
+			
+			cout << arr[i];
+			if (arr[i] == '\0') {
+				break;
+			}
+			index++;
+	}
+		cout << endl;
+		
+		
+		cout << index << endl;
+		return 0;*/
+	//exersise №2
+	string str  ;
+	getline(cin, str);
+	char elements;
+	cin >> elements;
+
+	
+	
+
+	while (true)
+	{
+		int index = str.find(elements);
+		if (index >= 0)
+		{
+			str.erase(index, 1);
+		}
+		else
+		{
+			break;
+		}
+	}
+
+	cout << str << endl;
+	
 }
