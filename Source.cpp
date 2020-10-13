@@ -1,73 +1,364 @@
 #include<iostream>
-#include<time.h>
-#include<iomanip>
-#include<string>
+#include<ctime>
 
 using namespace std;
 
+int countStudent = 10;
+int gr = 3;
+ 
+int index = 0;
+int excellent = 0;
+float BestGroup = 0;
+int IndexWorstGroup = 0;
+float WorstGroup = 0;
+int IndexBestGroup = 0;
+
+struct Date
+{
+    int day;
+    int month;
+    int year;
+};
+struct Student
+{
+    Date date;
+    string name;
+    string LastName;
+    bool IsPrivelege;
+    float AverageMark;
+    int Mark[10];
+};
+struct Teacher
+{
+    Date date;
+    string name;
+    string LastName;
+};
+struct Group
+{
+    float AverageMarkAllGroup;
+    Student* students = new Student[countStudent];
+    Teacher teachers;
+    string Name;
+    int IsPrivelegeInGroup;
+
+};
+
+void CreatStudent(Group* s)
+{
+
+    string sn[6] = { "Бондаренко", "Мельник", "Шевченко", "Ткаченко", "Коваленко", "Бойко" };
+    string n[6] = { "Олексій", "Олександр", "Максим", "Борис", "Юрій", "Владислав" };
+    int c, b;
+     float avaregeGroup = 0;
+    for (int i = 0; i < 10; i++) {
+        float avarege = 0;
+        c = rand() % 5;
+        b = rand() % 5;
+        s->students[i].name = n[b];
+        s->students[i].LastName = sn[c];
+        s->students[i].date.day = 1 + rand() % 31;
+        s->students[i].date.month = 1 + rand() % 12;
+        s->students[i].date.year = 2004 + rand() % 3;
+        for (int j = 0; j < 10; j++) {
+            s->students[i].Mark[j] = 3 + rand() %12;
+            avarege += s->students[i].Mark[j];
+            avaregeGroup+= s->students[i].Mark[j];
+        }
+        s->students[i].AverageMark = (avarege / 10);
+        if (s->students[i].AverageMark >= 8.5) {
+            excellent++;
+        }
+
+        s->students[i].IsPrivelege = rand() % 2;
+        if (s->students[i].IsPrivelege == true) {
+            s->IsPrivelegeInGroup++;
+        }
+    }
+    s->AverageMarkAllGroup = ((avaregeGroup / 10)/10);
+    
+ 
+    if (s->AverageMarkAllGroup > BestGroup) {
+        BestGroup = s->AverageMarkAllGroup;
+        IndexBestGroup = index;
+        index++;
+
+    }else if (s->AverageMarkAllGroup < WorstGroup) {
+        WorstGroup = s->AverageMarkAllGroup;
+        IndexWorstGroup = index;
+        
+    }
+}
 
 
+void CreatTeacher(Group* t)
+{
 
+    string sn[6] = { "Бондаренко", "Мельник", "Шевченко", "Ткаченко", "Коваленко", "Бойко" };
+    string n[6] = { "Олексій", "Олександр", "Максим", "Борис", "Юрій", "Владислав" };
+    int c, b;
+    for (int i = 0; i < 3; i++) {
+        c = rand() % 5;
+        b = rand() % 5;
+        t->teachers.name = n[b];
+        t->teachers.LastName = sn[c];
+        t->teachers.date.day = 1 + rand() % 31;
+        t->teachers.date.month = 11 + rand() % 1;
+        t->teachers.date.year = 1960 + rand() % 40;
+    }
+}
+void CreateName(Group* n) {
+    string sn[6] = { "A", "Б", "В", "Г", "Д", "Е" };
+    int   c = rand() % 5;
+    n->Name = sn[c];
+}
+void Output(Group* n) {
+    for (int i = 0; i < countStudent; i++) {
+       cout<< n->students[i].name<<endl;
+       cout<< n->students[i].LastName << endl;
+       cout<< n->students[i].date.day << endl;
+       cout<< n->students[i].date.month << endl;
+       cout<< n->students[i].date.year << endl;
+       cout<< n->students[i].AverageMark << endl;
+       cout<< n->students[i].IsPrivelege << endl;
+    }
+    cout<<"Avarege group" << n->AverageMarkAllGroup << endl;
+}
+void Output2(Group* n) {
+
+    for (int i = 0; i < countStudent; i++) {
+        
+        if (n->students[i].AverageMark >= 9) {
+            cout << endl;
+            cout << n->Name << endl;
+            cout << n->students[i].name << endl;
+            cout << n->students[i].LastName << endl;
+            cout << n->students[i].date.day << endl;
+            cout << n->students[i].date.month << endl;
+            cout << n->students[i].date.year << endl;
+            cout << n->students[i].AverageMark << endl;
+            cout << n->students[i].IsPrivelege << endl;
+        }
+    }
+    
+}
+
+void Output3(Group* n) {
+    cout << n->teachers.name << endl;
+    cout << n->teachers.LastName << endl;
+    cout << n->AverageMarkAllGroup << endl;
+    
+
+}
+void Output4(Group* n) {
+
+            cout << n->Name << endl;
+
+
+}
+void Output5(Group* n,int indexOldest) {
+    
+        cout << n->students[indexOldest].name << endl;
+        cout << n->students[indexOldest].LastName << endl;
+        cout << n->students[indexOldest].date.day << endl;
+        cout << n->students[indexOldest].date.month << endl;
+        cout << n->students[indexOldest].date.year << endl;
+        cout << n->students[indexOldest].AverageMark << endl;
+        cout << n->students[indexOldest].IsPrivelege << endl;
+    
+    cout << "Avarege group" << n->AverageMarkAllGroup << endl;
+}
+void Output6(string* LastName , Group* n) {
+    string str = LastName[0];
+    int find = 0;
+    int* arr = new int[find];
+    for (int i = 1; i < ( countStudent); i++) {
+        if (str == LastName[i]) {
+            int* arr2 = new int[find + 1]; 
+            for (int j = 0; j < find+1; j++)
+            {
+                arr2[j] = arr[j];
+            }
+            arr = nullptr;
+            delete[] arr;
+            find++;
+        
+            arr = new int[find];
+            arr2[find] = i;
+            for (int j = 0; j < find ; j++)
+            {
+              arr[j] = arr2[j];
+            }
+            arr2 = nullptr;
+            delete[] arr2;
+        }
+    }
+    string* temp = new string[(( countStudent) - find)];
+    for (int i = 0,j = 1; i < (( countStudent)-find); j++)
+    {
+        bool isTrue = false;
+        for (int j = 0; j < find; j++) {
+            if (j == arr[j]) {
+                isTrue = true;
+            }
+        }
+        if (isTrue == false) {
+            temp[i] = LastName[j];
+        }
+    }
+    int g = 0;
+    int j = 0;
+   
+        
+            
+                while (arr[g]< countStudent)
+                {
+                    cout << n->students[g].name << endl;
+                    cout << n->students[g].LastName << endl;
+                    cout << n->students[g].date.day << endl;
+                    cout << n->students[g].date.month << endl;
+                    cout << n->students[g].date.year << endl;
+                    g++;
+                }
+           
+             
+        
+    
+
+   
+}
 
 int main() {
+    srand(time(NULL));
+    Group* group = new Group[gr];
+    for (int i = 0; i < gr; i++) {
+        CreatTeacher(&group[i]);
+        CreatStudent(&group[i]);
+        CreateName(&group[i]);
+        cout << i;
+        // Output(&group[i]);
+        // cout << group[i].AverageMarkAllGroup << endl;
 
-	/*int point1 = 0;
-	int big = 0;
-	int litle = 0;
-	int space = 0;
-	int point = 0;
-	*/
-	char arr[255];
-	char arr2[255];
-	char arr3[255];
-	
-	cin.getline(arr, 255);
-	//for (int i = 0; i < strlen(arr); i++) {
-	//	if ( isupper(arr[i])){
-	//		big++;
-	//	}
-	//	else if ( islower(arr[i])) {
-	//		litle++;
-	//	}
-	//	else if (isspace(arr[i])) {
-	//		space++;
-	//	}
-	//	else if (int(arr[i]) < 90 && int(arr[i]) > 32) {
-	//		point++;
-	//	}
 
-	//	if (int(arr[i]) == 46) {
-	//		point1 = i;
-	//	}
+    }
+    WorstGroup = group[0].AverageMarkAllGroup;
+    BestGroup = group[0].AverageMarkAllGroup;
 
-	//}
-	//cout<<"Big sign-> "  << big << endl;
-	//cout << "Litle sign-> " << litle << endl;
-	//cout << "Space-> " << space << endl;
-	//cout << "Char-> " << point << endl;
-	//cout << "Last point-> " << point1 << endl;
-	//
-	int index = 0;
-	int stop = 0;
-	for (int i = 0; i < 255; i++) {
-		if (int(arr[i]) == 43) {
-			index = i;
-		}
-		if (int(arr[i]) == ' ') {
-			stop = i;
-		}
-		
-	}
-	for (int i = index+1,j=0; i < 255;i++,j++) {
-		arr3[j] = arr[i] ;
-	}
-	
-	 strncpy_s(arr2,arr,index);
-	 cout << arr2 << endl;
-	 cout << arr3 << endl;
-	 int number3 = atoi(arr3);
-	 int number2 = atoi(arr2);
-	 cout<<number3<<" + "<<number2<<" = " << number2 + number3 << endl;
 
-	return 0;
+    int MaxYear = group[0].students[0].date.year;
+    int MaxMonth = group[0].students[0].date.month;
+    int MaxDays = group[0].students[0].date.day;
+    int  MostPrivelege = 0;
+    int indexOldest = 0;
+    int indexOldest2 = 0;
+    int counts = group[0].IsPrivelegeInGroup;
+    for (int i = 0; i < gr; i++) {
+        WorstGroup = group[0].AverageMarkAllGroup;
+        if (group[i].AverageMarkAllGroup < WorstGroup) {
+            WorstGroup = group[i].AverageMarkAllGroup;
+            IndexWorstGroup = i;
+        }
+        if (group[i].AverageMarkAllGroup > BestGroup) {
+            BestGroup = group[i].AverageMarkAllGroup;
+            IndexBestGroup = i;
+        }
+        if (group[i].IsPrivelegeInGroup > counts) {
+            MostPrivelege = i;
+            counts = group[i].IsPrivelegeInGroup;
+        }
+        for (int g = 0; g < gr; g++) {
+            for (int i = 0; i < 10; i++)
+            {
+
+                if (MaxYear >= group[g].students[i].date.year) {
+                    if (MaxYear > group[g].students[i].date.year) {
+                        MaxDays = group[g].students[i].date.day;
+                        MaxMonth = group[g].students[i].date.month;
+                        MaxYear = group[g].students[i].date.year;
+                        indexOldest = i;
+                        indexOldest2 = g;
+                    }
+
+                    if (MaxMonth >= group[g].students[i].date.month) {
+                        if (MaxMonth > group[g].students[i].date.month) {
+                            MaxDays = group[g].students[i].date.day;
+                            MaxMonth = group[g].students[i].date.month;
+                            MaxYear = group[g].students[i].date.year;
+                            indexOldest = i;
+                            indexOldest2 = g;
+                        }
+
+                        index = i;
+                        if (MaxDays > group[g].students[i].date.day) {
+                            MaxDays = group[g].students[i].date.day;
+                            MaxMonth = group[g].students[i].date.month;
+                            MaxYear = group[g].students[i].date.year;
+
+                            indexOldest = i;
+                            indexOldest2 = g;
+                        }
+                    }
+                }
+
+            }
+
+
+        }
+
+        int achion = 0;
+        switch (achion)
+        {
+        case 1: {
+            for (int i = 0; i < gr; i++) {
+                Output2(&group[i]);
+            }
+        }break;
+        case 2: {
+            for (int i = 0; i < gr; i++) {
+                Output3(&group[IndexBestGroup]);
+            }
+        }break;
+        case 3: {
+            for (int i = 0; i < gr; i++) {
+                Output4(&group[IndexWorstGroup]);
+            }
+        }break;
+        case 4: {
+            string* LastName = new string[countStudent * gr];
+            int g = 0;
+            for (int i = 0; i < gr; i++) {
+                for (int i = 0; i < gr; i++)
+                {
+                    for (int j = 0; j < countStudent; j++)
+                    {
+                        LastName[g] = group[i].students[j].LastName;
+                        g++;
+                    }
+                }
+            }
+            Output6(LastName, group);
+        }break;
+        case 6: {
+            for (int i = 0; i < gr; i++) {
+                Output5(&group[indexOldest2], indexOldest);
+            }
+        }break;
+        case 7: {
+            for (int i = 0; i < gr; i++) {
+                cout << excellent << endl;
+            }
+        }break;
+        case 8: {
+            for (int i = 0; i < gr; i++) {
+                Output4(&group[MostPrivelege]);
+            }
+        }break;
+        default:
+            break;
+        }
+        
+
+    }
 }
+
+
