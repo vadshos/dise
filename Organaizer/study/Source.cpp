@@ -167,7 +167,10 @@ void LogicGame(Quizzes quiz,string name) {
 		int a = 0;
 		geek << a;
 		xp += a;
+		cout << "You win " << xp << "xp"<<endl;
 		xp*=2;
+		cout << "And with x2 bonus you win " << xp << "xp";
+
 		ofstream List;
 		List.open("list.txt");
 		for (int i = 0; i < count; i++) {
@@ -240,6 +243,7 @@ void LogicGame(Quizzes quiz,string name) {
 
 		
 		xp = 0;
+		cout << "You win " << xp << "xp because you lose in big game";
 
 
 		ofstream List;
