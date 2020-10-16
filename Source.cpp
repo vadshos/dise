@@ -269,11 +269,14 @@ int main() {
             a = _getch();
             if (a == 119) {
                 achion--;
+                if (achion < 1) {
+                    achion = 1;
+                }
             }
             else if (a == 115) {
                 achion++;
-                if (a > 8) {
-                    a = 0;
+                if (achion > 8) {
+                    achion = 1;
                 }
             }
         }
