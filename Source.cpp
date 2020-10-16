@@ -279,6 +279,8 @@ int main() {
             }
             else if (a == 115) {
                 achion++;
+             if (a>7){
+              a=0;
             }
         }
         switch (achion)
