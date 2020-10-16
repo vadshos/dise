@@ -168,64 +168,8 @@ void Output5(Group* n,int indexOldest) {
     
     cout << "Avarege group" << n->AverageMarkAllGroup << endl;
 }
-void Output6(string* LastName , Group* n) {
-    string str = LastName[0];
-    int find = 0;
-    int* arr = new int[find];
-    for (int i = 1; i < ( countStudent); i++) {
-        if (str == LastName[i]) {
-            int* arr2 = new int[find + 1]; 
-            for (int j = 0; j < find+1; j++)
-            {
-                arr2[j] = arr[j];
-            }
-            arr = nullptr;
-            delete[] arr;
-            find++;
-        
-            arr = new int[find];
-            arr2[find] = i;
-            for (int j = 0; j < find ; j++)
-            {
-              arr[j] = arr2[j];
-            }
-            arr2 = nullptr;
-            delete[] arr2;
-        }
-    }
-    string* temp = new string[(( countStudent) - find)];
-    for (int i = 0,j = 1; i < (( countStudent)-find); j++)
-    {
-        bool isTrue = false;
-        for (int j = 0; j < find; j++) {
-            if (j == arr[j]) {
-                isTrue = true;
-            }
-        }
-        if (isTrue == false) {
-            temp[i] = LastName[j];
-        }
-    }
-    int g = 0;
-    int j = 0;
-   
-        
-            
-                while (arr[g]< countStudent)
-                {
-                    cout << n->students[g].name << endl;
-                    cout << n->students[g].LastName << endl;
-                    cout << n->students[g].date.day << endl;
-                    cout << n->students[g].date.month << endl;
-                    cout << n->students[g].date.year << endl;
-                    g++;
-                }
-           
-             
-        
+void Output6( ) {
     
-
-   
 }
 
 int main() {
@@ -306,6 +250,7 @@ int main() {
         }
 
         int achion = 0;
+        cin >> achion;
         switch (achion)
         {
         case 1: {
@@ -324,19 +269,47 @@ int main() {
             }
         }break;
         case 4: {
-            string* LastName = new string[countStudent * gr];
-            int g = 0;
-            for (int i = 0; i < gr; i++) {
-                for (int i = 0; i < gr; i++)
-                {
-                    for (int j = 0; j < countStudent; j++)
-                    {
-                        LastName[g] = group[i].students[j].LastName;
-                        g++;
+            for (int g = 0; g < gr; g++) {
+                string LastName;
+                for (int l = 0; l < countStudent; l++) {
+                    LastName = group[g].students[l].LastName;
+                    for (int i = 0; i < gr; i++) {
+                        for (int j = 0; j < countStudent; j++) {
+                            if (LastName == group[i].students[j].LastName && j != l) {
+                                if (j == 0) {
+                                    Output5(&group[g], l);
+                                }
+                                Output5(&group[i], j);
+                            }
+                        }
                     }
                 }
             }
-            Output6(LastName, group);
+            
+            
+        }break;
+        case 5: {
+            for (int g = 0; g < gr; g++) {
+                int d;
+                int m;
+                int y;
+                for (int l = 0; l < countStudent; l++) {
+                    d = group[g].students[l].date.day;
+                    m = group[g].students[l].date.month;
+                    cout << "************************************" << endl;
+
+                    for (int i = 0; i < gr; i++) {
+                        for (int j = 0; j < countStudent; j++) {
+                            if (d == group[i].students[j].date.day && m == group[i].students[j].date.month&&j!=l) {
+                                if (j == 0) {
+                                    Output5(&group[g], l);
+                                }
+                                Output5(&group[i], j);
+                            }
+                        }
+                    }
+                }
+            }
         }break;
         case 6: {
             for (int i = 0; i < gr; i++) {
@@ -360,5 +333,3 @@ int main() {
 
     }
 }
-
-
