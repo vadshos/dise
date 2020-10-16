@@ -301,7 +301,7 @@ int main() {
 
             }break;
             case 4: {
-                
+                for (int g = 0; g < gr; g++) {
                     string LastName;
                     for (int l = 0; l < countStudent; l++) {
                         LastName = group[g].students[l].LastName;
@@ -316,14 +316,14 @@ int main() {
                             }
                         }
                     }
-                
+                }
                 system("pause");
 
 
             }break;
             case 5: {
-                
-                    int d;
+                for (int g = 0; g < gr; i++) {
+                       int d;
                     int m;
                     int y;
                     for (int l = 0; l < countStudent; l++) {
@@ -342,7 +342,7 @@ int main() {
                             }
                         }
                     }
-                
+                }
                 system("pause");
 
             }break;
