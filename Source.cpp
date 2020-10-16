@@ -280,28 +280,28 @@ int main() {
             switch (achion)
             {
             case 1: {
-                for (int i = 0; i < gr; i++) {
+               
                     Output2(&group[i]);
-                }
+                
                 system("pause");
 
             }break;
             case 2: {
-                for (int i = 0; i < gr; i++) {
+                
                     Output3(&group[IndexBestGroup]);
-                }
+                
                 system("pause");
 
             }break;
             case 3: {
-                for (int i = 0; i < gr; i++) {
+                
                     Output4(&group[IndexWorstGroup]);
-                }
+                
                 system("pause");
 
             }break;
             case 4: {
-                for (int g = 0; g < gr; g++) {
+                
                     string LastName;
                     for (int l = 0; l < countStudent; l++) {
                         LastName = group[g].students[l].LastName;
@@ -316,13 +316,13 @@ int main() {
                             }
                         }
                     }
-                }
+                
                 system("pause");
 
 
             }break;
             case 5: {
-                for (int g = 0; g < gr; g++) {
+                
                     int d;
                     int m;
                     int y;
@@ -342,27 +342,27 @@ int main() {
                             }
                         }
                     }
-                }
+                
                 system("pause");
 
             }break;
             case 6: {
-                for (int i = 0; i < gr; i++) {
+                
                     Output5(&group[indexOldest2], indexOldest);
                     system("pause");
-                }
+                
             }break;
             case 7: {
-                for (int i = 0; i < gr; i++) {
+                
                     cout << excellent << endl;
-                }
+                
                 system("pause");
 
             }break;
             case 8: {
-                for (int i = 0; i < gr; i++) {
+               
                     Output4(&group[MostPrivelege]);
-                }
+                
                 system("pause");
 
             }break;
