@@ -1,5 +1,7 @@
 #include<iostream>
 #include<ctime>
+#include<conio.h>
+#include"windows.h"
 
 using namespace std;
 
@@ -12,7 +14,10 @@ float BestGroup = 0;
 int IndexWorstGroup = 0;
 float WorstGroup = 0;
 int IndexBestGroup = 0;
-
+void SetColor(int text, int bg) {
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hStdOut, (WORD)((bg << 4) | text));
+}
 struct Date
 {
     int day;
@@ -179,7 +184,8 @@ int main() {
         CreatTeacher(&group[i]);
         CreatStudent(&group[i]);
         CreateName(&group[i]);
-        cout << i;
+        
+
         // Output(&group[i]);
         // cout << group[i].AverageMarkAllGroup << endl;
 
@@ -249,8 +255,32 @@ int main() {
 
         }
 
-        int achion = 0;
-        cin >> achion;
+        int achion = 1;
+        setlocale(LC_ALL, "");
+        string  ach[] = { "-Вивести усіх відмінників.","1- Вивести  керівника, в класі якого найкраща успішність.","2- Вивести назву класа з найгіршою успішністю.","3- Вивести всіх братів і сестер.","4- Вивести дітей, які народились в один день.","5- Вивести найстаршого учня.","6- Скільки учнів мають середній бал більше 8.5 ?","7-В якому класі найбільше пільговиків ?"};
+        int a = 0;
+        while (a != 13) {
+            system("cls");
+            for (int i = 0; i < 8; i++) {
+                if (i == achion) {
+                    SetColor(0, 14);
+                }
+                if (i != achion) {
+                    SetColor(15, 0);
+                }
+                cout << ach[i]<<endl;
+                SetColor(15, 0);
+                
+               
+            }
+            a = _getch();
+            if (achion != 0 && a == 119) {
+                achion--;
+            }
+            else if (a == 115) {
+                achion++;
+            }
+        }
         switch (achion)
         {
         case 1: {
@@ -333,3 +363,5 @@ int main() {
 
     }
 }
+
+
