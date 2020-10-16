@@ -7,7 +7,7 @@ using namespace std;
 
 int countStudent = 10;
 int gr = 3;
- 
+
 int index = 0;
 int excellent = 0;
 float BestGroup = 0;
@@ -55,7 +55,7 @@ void CreatStudent(Group* s)
     string sn[6] = { "Бондаренко", "Мельник", "Шевченко", "Ткаченко", "Коваленко", "Бойко" };
     string n[6] = { "Олексій", "Олександр", "Максим", "Борис", "Юрій", "Владислав" };
     int c, b;
-     float avaregeGroup = 0;
+    float avaregeGroup = 0;
     for (int i = 0; i < 10; i++) {
         float avarege = 0;
         c = rand() % 5;
@@ -66,9 +66,9 @@ void CreatStudent(Group* s)
         s->students[i].date.month = 1 + rand() % 12;
         s->students[i].date.year = 2004 + rand() % 3;
         for (int j = 0; j < 10; j++) {
-            s->students[i].Mark[j] = 3 + rand() %12;
+            s->students[i].Mark[j] = 3 + rand() % 12;
             avarege += s->students[i].Mark[j];
-            avaregeGroup+= s->students[i].Mark[j];
+            avaregeGroup += s->students[i].Mark[j];
         }
         s->students[i].AverageMark = (avarege / 10);
         if (s->students[i].AverageMark >= 8.5) {
@@ -80,18 +80,19 @@ void CreatStudent(Group* s)
             s->IsPrivelegeInGroup++;
         }
     }
-    s->AverageMarkAllGroup = ((avaregeGroup / 10)/10);
-    
- 
+    s->AverageMarkAllGroup = ((avaregeGroup / 10) / 10);
+
+
     if (s->AverageMarkAllGroup > BestGroup) {
         BestGroup = s->AverageMarkAllGroup;
         IndexBestGroup = index;
         index++;
 
-    }else if (s->AverageMarkAllGroup < WorstGroup) {
+    }
+    else if (s->AverageMarkAllGroup < WorstGroup) {
         WorstGroup = s->AverageMarkAllGroup;
         IndexWorstGroup = index;
-        
+
     }
 }
 
@@ -119,20 +120,20 @@ void CreateName(Group* n) {
 }
 void Output(Group* n) {
     for (int i = 0; i < countStudent; i++) {
-       cout<< n->students[i].name<<endl;
-       cout<< n->students[i].LastName << endl;
-       cout<< n->students[i].date.day << endl;
-       cout<< n->students[i].date.month << endl;
-       cout<< n->students[i].date.year << endl;
-       cout<< n->students[i].AverageMark << endl;
-       cout<< n->students[i].IsPrivelege << endl;
+        cout << n->students[i].name << endl;
+        cout << n->students[i].LastName << endl;
+        cout << n->students[i].date.day << endl;
+        cout << n->students[i].date.month << endl;
+        cout << n->students[i].date.year << endl;
+        cout << n->students[i].AverageMark << endl;
+        cout << n->students[i].IsPrivelege << endl;
     }
-    cout<<"Avarege group" << n->AverageMarkAllGroup << endl;
+    cout << "Avarege group" << n->AverageMarkAllGroup << endl;
 }
 void Output2(Group* n) {
 
     for (int i = 0; i < countStudent; i++) {
-        
+
         if (n->students[i].AverageMark >= 9) {
             cout << endl;
             cout << n->Name << endl;
@@ -145,36 +146,36 @@ void Output2(Group* n) {
             cout << n->students[i].IsPrivelege << endl;
         }
     }
-    
+
 }
 
 void Output3(Group* n) {
     cout << n->teachers.name << endl;
     cout << n->teachers.LastName << endl;
     cout << n->AverageMarkAllGroup << endl;
-    
+
 
 }
 void Output4(Group* n) {
 
-            cout << n->Name << endl;
+    cout << n->Name << endl;
 
 
 }
-void Output5(Group* n,int indexOldest) {
-    
-        cout << n->students[indexOldest].name << endl;
-        cout << n->students[indexOldest].LastName << endl;
-        cout << n->students[indexOldest].date.day << endl;
-        cout << n->students[indexOldest].date.month << endl;
-        cout << n->students[indexOldest].date.year << endl;
-        cout << n->students[indexOldest].AverageMark << endl;
-        cout << n->students[indexOldest].IsPrivelege << endl;
-    
+void Output5(Group* n, int indexOldest) {
+
+    cout << n->students[indexOldest].name << endl;
+    cout << n->students[indexOldest].LastName << endl;
+    cout << n->students[indexOldest].date.day << endl;
+    cout << n->students[indexOldest].date.month << endl;
+    cout << n->students[indexOldest].date.year << endl;
+    cout << n->students[indexOldest].AverageMark << endl;
+    cout << n->students[indexOldest].IsPrivelege << endl;
+
     cout << "Avarege group" << n->AverageMarkAllGroup << endl;
 }
-void Output6( ) {
-    
+void Output6() {
+
 }
 
 int main() {
@@ -184,12 +185,6 @@ int main() {
         CreatTeacher(&group[i]);
         CreatStudent(&group[i]);
         CreateName(&group[i]);
-        
-
-        // Output(&group[i]);
-        // cout << group[i].AverageMarkAllGroup << endl;
-
-
     }
     WorstGroup = group[0].AverageMarkAllGroup;
     BestGroup = group[0].AverageMarkAllGroup;
@@ -257,7 +252,7 @@ int main() {
 
         int achion = 1;
         setlocale(LC_ALL, "");
-        string  ach[] = { "-Вивести усіх відмінників.","1- Вивести  керівника, в класі якого найкраща успішність.","2- Вивести назву класа з найгіршою успішністю.","3- Вивести всіх братів і сестер.","4- Вивести дітей, які народились в один день.","5- Вивести найстаршого учня.","6- Скільки учнів мають середній бал більше 8.5 ?","7-В якому класі найбільше пільговиків ?"};
+        string  ach[] = { "-Вивести усіх відмінників.","1- Вивести  керівника, в класі якого найкраща успішність.","2- Вивести назву класа з найгіршою успішністю.","3- Вивести всіх братів і сестер.","4- Вивести дітей, які народились в один день.","5- Вивести найстаршого учня.","6- Скільки учнів мають середній бал більше 8.5 ?","7-В якому класі найбільше пільговиків ?" };
         int a = 0;
         while (a != 13) {
             system("cls");
@@ -268,10 +263,8 @@ int main() {
                 if (i != achion) {
                     SetColor(15, 0);
                 }
-                cout << ach[i]<<endl;
+                cout << ach[i] << endl;
                 SetColor(15, 0);
-                
-               
             }
             a = _getch();
             if (achion != 0 && a == 119) {
@@ -279,91 +272,104 @@ int main() {
             }
             else if (a == 115) {
                 achion++;
-             if (a>7){
-              a=0;
+                if (a > 8) {
+                    a = 0;
+                }
             }
         }
-        switch (achion)
-        {
-        case 1: {
-            for (int i = 0; i < gr; i++) {
-                Output2(&group[i]);
-            }
-        }break;
-        case 2: {
-            for (int i = 0; i < gr; i++) {
-                Output3(&group[IndexBestGroup]);
-            }
-        }break;
-        case 3: {
-            for (int i = 0; i < gr; i++) {
-                Output4(&group[IndexWorstGroup]);
-            }
-        }break;
-        case 4: {
-            for (int g = 0; g < gr; g++) {
-                string LastName;
-                for (int l = 0; l < countStudent; l++) {
-                    LastName = group[g].students[l].LastName;
-                    for (int i = 0; i < gr; i++) {
-                        for (int j = 0; j < countStudent; j++) {
-                            if (LastName == group[i].students[j].LastName && j != l) {
-                                if (j == 0) {
-                                    Output5(&group[g], l);
+            switch (achion)
+            {
+            case 1: {
+                for (int i = 0; i < gr; i++) {
+                    Output2(&group[i]);
+                }
+                system("pause");
+
+            }break;
+            case 2: {
+                for (int i = 0; i < gr; i++) {
+                    Output3(&group[IndexBestGroup]);
+                }
+                system("pause");
+
+            }break;
+            case 3: {
+                for (int i = 0; i < gr; i++) {
+                    Output4(&group[IndexWorstGroup]);
+                }
+                system("pause");
+
+            }break;
+            case 4: {
+                for (int g = 0; g < gr; g++) {
+                    string LastName;
+                    for (int l = 0; l < countStudent; l++) {
+                        LastName = group[g].students[l].LastName;
+                        for (int i = 0; i < gr; i++) {
+                            for (int j = 0; j < countStudent; j++) {
+                                if (LastName == group[i].students[j].LastName && j != l) {
+                                    if (j == 0) {
+                                        Output5(&group[g], l);
+                                    }
+                                    Output5(&group[i], j);
                                 }
-                                Output5(&group[i], j);
                             }
                         }
                     }
                 }
-            }
-            
-            
-        }break;
-        case 5: {
-            for (int g = 0; g < gr; g++) {
-                int d;
-                int m;
-                int y;
-                for (int l = 0; l < countStudent; l++) {
-                    d = group[g].students[l].date.day;
-                    m = group[g].students[l].date.month;
-                    cout << "************************************" << endl;
+                system("pause");
 
-                    for (int i = 0; i < gr; i++) {
-                        for (int j = 0; j < countStudent; j++) {
-                            if (d == group[i].students[j].date.day && m == group[i].students[j].date.month&&j!=l) {
-                                if (j == 0) {
-                                    Output5(&group[g], l);
+
+            }break;
+            case 5: {
+                for (int g = 0; g < gr; g++) {
+                    int d;
+                    int m;
+                    int y;
+                    for (int l = 0; l < countStudent; l++) {
+                        d = group[g].students[l].date.day;
+                        m = group[g].students[l].date.month;
+                        cout << "************************************" << endl;
+
+                        for (int i = 0; i < gr; i++) {
+                            for (int j = 0; j < countStudent; j++) {
+                                if (d == group[i].students[j].date.day && m == group[i].students[j].date.month && j != l) {
+                                    if (j == 0) {
+                                        Output5(&group[g], l);
+                                    }
+                                    Output5(&group[i], j);
                                 }
-                                Output5(&group[i], j);
                             }
                         }
                     }
                 }
-            }
-        }break;
-        case 6: {
-            for (int i = 0; i < gr; i++) {
-                Output5(&group[indexOldest2], indexOldest);
-            }
-        }break;
-        case 7: {
-            for (int i = 0; i < gr; i++) {
-                cout << excellent << endl;
-            }
-        }break;
-        case 8: {
-            for (int i = 0; i < gr; i++) {
-                Output4(&group[MostPrivelege]);
-            }
-        }break;
-        default:
-            break;
-        }
-        
+                system("pause");
 
+            }break;
+            case 6: {
+                for (int i = 0; i < gr; i++) {
+                    Output5(&group[indexOldest2], indexOldest);
+                    system("pause");
+                }
+            }break;
+            case 7: {
+                for (int i = 0; i < gr; i++) {
+                    cout << excellent << endl;
+                }
+                system("pause");
+
+            }break;
+            case 8: {
+                for (int i = 0; i < gr; i++) {
+                    Output4(&group[MostPrivelege]);
+                }
+                system("pause");
+
+            }break;
+            default:
+                break;
+            }
+
+
+        }
     }
-}
-
-
