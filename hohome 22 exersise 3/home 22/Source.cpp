@@ -1,24 +1,25 @@
 #pragma once
+#include<iostream>
 template<typename MyType>
 class Array
 {
 public:
-	Array(MyType arr,size_t size);
+	Array(MyType arr, size_t size);
 	Array(const Array& obj);
 	const size_t& GetSize() const;
 	Array& operator = (Array& obj);
 	const size_t& GetUpperBound() const;
-	void FreeExtra() const;
+	void FreeExtra() ;
 	void SetSize(int size, int grow = 1);
-	const Array& InsertAt( size_t index,MyType element);
-	MyType & operator[](size_t index);
+	const Array& InsertAt(MyType element, size_t index);
+	MyType& operator[](size_t index);
 	const Array Append(const Array& obj);
 	const Array& RemoveAt(const size_t index);
-	const MyType& GetAt(size_t index) ;
+	const MyType& GetAt(size_t index);
 	Array<MyType>& SetAt(size_t index, MyType element);
 	bool isEmpty() const;
 	const Array& RemoveAll();
-    Array*  GetData();
+	Array* GetData();
 	template <typename T> friend std::ostream& operator<<(std::ostream& out, const Array<T>& a);
 	~Array();
 
@@ -30,9 +31,9 @@ private:
 };
 
 template<typename MyType>
-inline Array<MyType>::Array(MyType arr, size_t size) 
+inline Array<MyType>::Array(MyType arr, size_t size)
 {
-	this->size = size  < 1 ? 1 : size;
+	this->size = size < 1 ? 1 : size;
 	this->capacity = this->size;
 	this->grow = 0;
 	this->arr = new MyType[this->size];
@@ -90,7 +91,7 @@ inline const size_t& Array<MyType>::GetUpperBound() const
 }
 
 template<typename MyType>
-inline void Array<MyType>::FreeExtra() const
+inline void Array<MyType>::FreeExtra() 
 {
 	capacity = size;
 }
@@ -98,7 +99,12 @@ inline void Array<MyType>::FreeExtra() const
 template<typename MyType>
 inline void Array<MyType>::SetSize(int size, int grow)
 {
-	this->size = size;
+	
+	this->capacity = size;
+	if (size < this->size)
+	{
+		this->size = size;
+	}
 	this->grow = grow;
 
 }
@@ -106,7 +112,7 @@ inline void Array<MyType>::SetSize(int size, int grow)
 
 
 template<typename MyType>
-inline const Array<MyType>& Array<MyType>::InsertAt( size_t index,MyType element)
+inline const Array<MyType>& Array<MyType>::InsertAt( MyType element,size_t index)
 {
 	MyType* temp = new MyType[size];
 	for (size_t i = 0; i < size; i++)
@@ -114,14 +120,14 @@ inline const Array<MyType>& Array<MyType>::InsertAt( size_t index,MyType element
 		temp[i] = arr[i];
 	}
 	delete[] arr;
-	arr = new MyType[size+1];
-	for (size_t i = 0,j =0; i < size+1; i++)
+	arr = new MyType[size + 1];
+	for (size_t i = 0, j = 0; i < size + 1; i++)
 	{
 		i != index - 1 ? arr[i] = temp[j], j++ : arr[i] = element;
 	}
 	size++;
 	if (capacity < size) {
-		grow == 0 ? capacity ++ : capacity += grow;
+		grow == 0 ? capacity++ : capacity += grow;
 	}
 	return *this;
 }
@@ -129,6 +135,7 @@ inline const Array<MyType>& Array<MyType>::InsertAt( size_t index,MyType element
 template<typename MyType>
 inline MyType& Array<MyType>::operator[](size_t index)
 {
+	if(index <= size)
 	return arr[index];
 }
 
@@ -136,11 +143,11 @@ template<typename MyType>
 inline const Array<MyType> Array<MyType>::Append(const Array& obj)
 {
 	size_t size_s = size + obj.size;
-	Array<MyType> tempArr(size_s+1,MyType());
+	Array<MyType> tempArr(size_s + 1, MyType());
 	for (int i = 0; i < size; i++) {
-		tempArr.SetAt(i,arr[i]);
+		tempArr.SetAt(i, arr[i]);
 	}
-	for (int i = size , j = 0; i < size_s; i++) {
+	for (int i = size, j = 0; i < size_s; i++) {
 		tempArr.SetAt(i, obj.arr[i]);
 	}
 	return tempArr;
@@ -151,8 +158,8 @@ inline const Array<MyType> Array<MyType>::Append(const Array& obj)
 template<typename MyType>
 inline const Array<MyType>& Array<MyType>::RemoveAt(const size_t index)
 {
-	MyType* temp = new MyType[size-1];
-	for (size_t i = 0,j=0; i < size; i++)
+	MyType* temp = new MyType[size - 1];
+	for (size_t i = 0, j = 0; i < size; i++)
 	{
 		if (i != index) {
 			temp[j] = arr[i];
@@ -173,7 +180,7 @@ inline const Array<MyType>& Array<MyType>::RemoveAt(const size_t index)
 template<typename MyType>
 inline const MyType& Array<MyType>::GetAt(size_t index)
 {
-	return arr[index] ;
+	return arr[index];
 }
 
 template<typename MyType>
@@ -201,7 +208,7 @@ inline const Array<MyType>& Array<MyType>::RemoveAll()
 }
 
 template<typename MyType>
-inline  Array<MyType>* Array<MyType>::GetData()  
+inline  Array<MyType>* Array<MyType>::GetData()
 {
 	return this;
 }
@@ -219,8 +226,19 @@ inline std::ostream& operator<<(std::ostream& out, const Array<T>& a)
 {
 	for (size_t i = 0; i < a.size; i++)
 	{
-
-		out << a.arr[i]<<" ";
+		out << a.arr[i] << " ";
 	}
 	return out;
+}
+/////////////////////
+#include <iostream>
+#include"Header.h"
+
+int main()
+{
+	Array<int> arr(5,6);
+	arr.InsertAt(3,4);
+	arr.SetSize(5);
+	arr.GetUpperBound();
+	std::cout << arr << std::endl;
 }
